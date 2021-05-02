@@ -7,9 +7,14 @@ public enum QuoteType {
     int length;
     QuoteType(int i) {length=i;};
     public static QuoteType GetQuoteType(int length){
-        //יתר קריא בעיניי
-        if (length<10) return SHORT;
-        if (length<20) return MEDIUM;
+        if (length< SHORT.length) return SHORT;
+        if (length< MEDIUM.length) return MEDIUM;
         return LONG;
+    }
+
+    public static void main(String[] args) {
+        QuoteType a=GetQuoteType(10);
+         a=GetQuoteType(20);
+
     }
 }
