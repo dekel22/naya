@@ -1,4 +1,5 @@
 package test1;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 
 import java.io.File;
@@ -18,10 +19,10 @@ public class QuotesToJsons {
 
     }
 
-    //todo temp something wired with my pem file
+    @SneakyThrows
     private  String QuoteInfoToJson(QuoteInfo quoteInfo){
-        String objInString= "{ \n text: \"" + quoteInfo.getText()+ "\" \n id:" + quoteInfo.getId() + "\"\n type:\"" + quoteInfo.getId();
-        return objInString;
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(quoteInfo);
     }
 
 
@@ -33,9 +34,6 @@ public class QuotesToJsons {
             QuoteInfo quoteInfo = (QuoteInfo) utils.readObjectToFile(QuotsSerilazedPath + "\\" + QuotePath);
             utils.writeStringToFile(jsonLib + utils.getCurrentTimeFotTextName(), QuoteInfoToJson(quoteInfo));
         }
-    }
-    QuotesToJsons(){
-
     }
 
 
